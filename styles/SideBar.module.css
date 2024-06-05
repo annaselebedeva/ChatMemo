@@ -59,3 +59,8 @@
 .container:hover &::-webkit-scrollbar-thumb {
     background-color: black;
 }
+
+.mContainer {
+    width: 100%;
+    overflow-y: scroll;
+}

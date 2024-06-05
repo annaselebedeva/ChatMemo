@@ -2,8 +2,9 @@ import React, { useEffect, useState } from "react";
 
 import styles from "../styles/SideBar.module.css";
 import NewUserModal from "./NewUserModal";
+import User from "./User";
 
-const SideBar = ({ currentUser, users, changeUser }) => {
+const SideBar = ({ isMobile, currentUser, users, changeUser }) => {
     //params: list of users and usergroups (should you be able to create multiple groups with the same users?)
     const [currUser, changeCurr] = useState();
     const [isModalOpen, setModalOpen] = useState(false);
@@ -31,12 +32,17 @@ const SideBar = ({ currentUser, users, changeUser }) => {
     const usersMap = users.map((usr,i) => {
         const active = (currUser && usr.id === currUser.id) ? "active" : "";
         return (
-            <div key={i} className={`${active ? styles.active : ""} ${styles.user}`} onClick={() => changeUser(usr)}>{usr.firstName} {usr.lastName}</div>
+            <User 
+                key={i}
+                active={active}
+                styles={styles}
+                usr={usr}
+                changeUser={changeUser} />
         );
     });
 
     return (
-        <div className={styles.container}>
+        <div className={`${styles.container} ${isMobile ? styles.mContainer : ""} `}>
             <div className={`flex justify-between items-center p-4 ${styles.user} ${styles.newChat}`}>
                 Users
                 <div 

@@ -1,17 +1,18 @@
 import React, { useState } from "react";
 
 import Banner from "./Banner";
-import MainDesktop from "./MainDesktop";
-import MainMobile from "./MainMobile";
-import {isMobile} from 'react-device-detect';
 import users from '../pages/api/mockdata.json';
-import { PRIMARY_COLOR } from "@/constants/constants";
- // {data: "hello", time: "223-343430", id:234, from: 0},{data: "hello", time: "223-343430", id:234, from: 1}
+
+import dynamic from 'next/dynamic';
+import { isMobile } from 'react-device-detect';
+
+  // {data: "hello", time: "223-343430", id:234, from: 0},{data: "hello", time: "223-343430", id:234, from: 1}
+
+const MainComponent = dynamic(() => isMobile ? import('./MainMobile') : import('./MainDesktop'), { ssr: false })
 
 const Main = () => {
     const [chatData, updateData] = useState(users.users);
     const [currUser, updateUser] = useState();
-    const [leftPanel, changeView] = useState(true);
 
     const handleChangeUser = (user, newUser) => {
         if (newUser) {
@@ -47,13 +48,12 @@ const Main = () => {
     return (
         <>
             <Banner />
-            <div className={`flex w-full border-t-4 border-${PRIMARY_COLOR}-400 overflow-auto`} style={{height: "calc(100% - 75px)"}}>
-                {/* {isMobile
-                    ? <MainMobile currUser={currUser} chatData={chatData} handleChangeUser={handleChangeUser} handleUpdate={handleUpdate} />
-                    :  */}
-                    <MainDesktop currUser={currUser} chatData={chatData} handleChangeUser={handleChangeUser} handleUpdate={handleUpdate} />
-                {/* } */}
-            </div>
+            <MainComponent
+                isMobile={isMobile}
+                currUser={currUser}
+                chatData={chatData}
+                handleChangeUser={handleChangeUser}
+                handleUpdate={handleUpdate} />
         </>
     );
 };
