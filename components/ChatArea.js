@@ -36,7 +36,7 @@ const ChatArea = ({ user, updateUser }) => {
 
     const showMsgs = msgs.map((m, i) => {
         return (
-            <Message data={m.data} timestamp={m.timestamp} />
+            <Message key={i} data={m.data} timestamp={m.timestamp} />
         );
     })
 
