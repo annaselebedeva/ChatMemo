@@ -4,7 +4,11 @@
     text-wrap: nowrap;
     overflow: hidden;
     cursor: pointer;
+    white-space: nowrap;
     color: rgba(17, 16, 19, 0.8);
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 .user:hover {

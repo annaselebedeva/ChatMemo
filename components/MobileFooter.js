@@ -5,13 +5,13 @@ const MobileFooter = ({ handleClickMenu, selected }) => {
         <section className={`flex justify-around items-center border-t-2 ${!selected ? "bg-rose-50" : "bg-white"}`}>
             <div className="border-r-2 flex-auto flex justify-center p-4" onClick={() => handleClickMenu(false)}>
                 <img
-                    src="/people.png"
+                    src="/people.svg"
                     className="h-10"
                     alt="Contacts tab" />
             </div>
             <div className={`flex-auto flex justify-center p-4 ${selected ? "bg-rose-50" : "bg-white"}`} onClick={() => handleClickMenu(true)}>
                 <img
-                    src="/chat.png"
+                    src="/chat.svg"
                     className="h-10"
                     alt="Chat tab" />
             </div>

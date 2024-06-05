@@ -1,5 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
+import styles from "../styles/NoSelect.module.css";
 export default function ResizablePanel({
     minSize,
     initialSize,
@@ -33,20 +34,20 @@ export default function ResizablePanel({
 
     return (
       <div
-        className="relative shrink-0 h-full"
+        className={`relative shrink-0 h-full ${styles.noSelect}`}
         style={{ "width": `${size}px` }}
       >
         {children}
         <ResizableHandle
-        isResizing={isResizing}
-        handleMouseDown={handleMouseDown}
+          isResizing={isResizing}
+          handleMouseDown={handleMouseDown}
         />
       </div>
     );
   }
   
   function ResizableHandle({ isResizing, handleMouseDown }) {
-    const positionHandleStyle = "absolute w-1 top-0 bottom-0 -right-1 cursor-col-resize hover:bg-slate-300";
+    const positionHandleStyle = "z-10 absolute w-1 top-0 bottom-0 -right-1 cursor-col-resize hover:bg-slate-300";
   
     return (
       <div

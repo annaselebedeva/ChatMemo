@@ -12,6 +12,7 @@
     "next": "^14.2.3",
     "react": "^18.3.1",
     "react-device-detect": "^2.2.3",
+    "react-div-100vh": "^0.7.0",
     "react-dom": "^18.3.1",
     "react-phone-number-input": "^3.4.3",
     "react-swipe-to-delete-ios": "^2.1.0"

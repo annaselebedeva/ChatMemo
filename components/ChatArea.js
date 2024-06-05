@@ -1,5 +1,6 @@
 import React,{ useState, useCallback, useEffect } from "react";
 import styles from "../styles/ChatArea.module.css";
+import selectStyles from "../styles/NoSelect.module.css";
 import DeleteModal from './DeleteModal';
 import { PRIMARY_BUTTON_STYLES } from "@/constants/constants";
 import ChatInfoModal from "./ChatInfoModal";
@@ -28,7 +29,7 @@ const ChatArea = ({ isMobile, user, updateUser, handleBack }) => {
     }
     const msgRef = useCallback((elem) => { //autofocus
           elem?.focus();
-      }, []);
+    }, [user]);
 
     useEffect(() => {
         addMsg(user.messages);
@@ -55,14 +56,8 @@ const ChatArea = ({ isMobile, user, updateUser, handleBack }) => {
         updateUser(user, true);
     }
 
-    const capitalize = (str) => {
-        return str.split(" ").map((word) => { 
-            return word[0].toUpperCase() + word.substring(1).toLowerCase(); 
-        }).join(" ");
-    }
-
     return (
-        <div className="basis-full overflow-hidden relative">
+        <div className={`basis-full overflow-hidden relative ${selectStyles.noSelect}`}>
             <div className="border-b-2 border-gray-200 flex justify-between items-center">
                 <span className="py-4 px-4 font-semibold flex items-center flex-nowrap overflow-hidden">
                     {isMobile 
@@ -74,28 +69,29 @@ const ChatArea = ({ isMobile, user, updateUser, handleBack }) => {
                             />
                         : ""
                     }
-                    <div className="text-ellipsis text-nowrap overflow-hidden cursor-default">
-                        {capitalize(`${user.firstName} ${user.lastName}`)}</div>
+                    <div className={`text-ellipsis whitespace-nowrap text-nowrap overflow-hidden cursor-default ${selectStyles.noSelect}`}>
+                        {user.firstName} {user.lastName}
+                    </div>
                 </span>
                 <div className="flex items-center flex-none">
                 <img src="/info.svg"
-                         className="w-14 py-4 px-4 cursor-pointer"
-                         onClick={handleOpenInfoModal}
-                         alt="View chat info" />
-                    <ChatInfoModal isOpen={isInfoModalOpen} onClose={handleCloseInfoModal} userData={user} />
-                    {isMobile
-                        ? ''
-                        : <>
-                            <img src="/trash.png"
-                                className="h-14 py-4 pl-4 pr-8 cursor-pointer"
-                                onClick={handleOpenDeleteModal}
-                                alt="Delete chat" />
-                            <DeleteModal
-                                isOpen={isDeleteModalOpen}
-                                onClose={handleCloseDeleteModal}
-                                onSubmit={handleDelete} />
-                        </>
-                    }
+                    className={`w-14 py-4 px-4 cursor-pointer ${selectStyles.noSelect}`}
+                    onClick={handleOpenInfoModal}
+                    alt="View chat info" />
+                        <ChatInfoModal isOpen={isInfoModalOpen} onClose={handleCloseInfoModal} userData={user} />
+                        {isMobile
+                            ? ''
+                            : <>
+                                <img src="/trash.png"
+                                    className={`h-14 py-4 pl-4 pr-8 cursor-pointer ${selectStyles.noSelect}`}
+                                    onClick={handleOpenDeleteModal}
+                                    alt="Delete chat" />
+                                <DeleteModal
+                                    isOpen={isDeleteModalOpen}
+                                    onClose={handleCloseDeleteModal}
+                                    onSubmit={handleDelete} />
+                            </>
+                        }
                 </div>
             </div>
             <ol reversed className={styles.chat}>
@@ -105,7 +101,7 @@ const ChatArea = ({ isMobile, user, updateUser, handleBack }) => {
                 <input 
                     ref={msgRef}
                     type="text" 
-                    className="border p-2 mr-2 w-full rounded-md" 
+                    className={`border p-2 mr-2 w-full rounded-md ${selectStyles.noSelect}`}
                     placeholder="Write message..."
                     value={currMsg}
                     onKeyDown={(e) => {

@@ -1,8 +1,8 @@
 import React from "react";
 import { PRIMARY_COLOR } from "@/constants/constants";
-
+import styles from "../styles/NoSelect.module.css";
 const ChatArea = () => (
-  <div className="p-5 text-2xl bg-rose-900 text-white font-bold cursor-default">
+  <div className={`p-5 text-2xl bg-rose-900 text-white font-bold cursor-default ${styles.noSelect}`}>
     <img src="/chat-bubble.svg"
          className={`color-rose-500 w-8 inline mr-2`}
          alt="ChatMemo logo"
