@@ -1,0 +1,58 @@
+.modalContent {
+    background-color: #fefefe;
+    padding: 24px 32px 32px 32px;
+    border: 1px solid lightgray;
+    border-radius: 8px;
+    width: 40%;
+    box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
+    min-width: 350px;
+}
+  
+.close {
+    color: #aaa;
+    font-size: 28px;
+    font-weight: bold;
+    text-align: end;
+    float:right;
+}
+  
+.close:hover, .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+} 
+
+.fieldInput {
+    padding: 4px;
+    width: 300px;
+}
+.fieldInput.error {
+    border-width: 1px 1px 1px 10px;
+    border-style: solid;
+    border-color: rgb(244 63 94) rgb(244 63 94) rgb(244 63 94) rgb(251 113 133);
+    border-image: initial;
+    background:  rgb(255 241 242);
+}
+
+.fieldInput {
+    border: 1px solid lightgray;
+    border-radius: 4px;
+}
+
+.modalContent[open] {
+    animation: fade-in 0.1s ease-out;
+}
+
+@keyframes fade-in {
+    0% {
+        opacity: 0;
+        transform: scaleY(0);
+        display: none;
+    }
+
+    100% {
+        opacity: 1;
+        transform: scaleY(1);
+        display: block;
+    }
+}

@@ -1,0 +1,65 @@
+.user {
+    padding: 16px;
+    text-overflow: ellipsis;
+    text-wrap: nowrap;
+    overflow: auto;
+    cursor: pointer;
+    color: rgba(17, 16, 19, 0.8);
+}
+
+.user:hover {
+    background: rgb(0,0,0,0.04);
+}
+
+.user.active {
+    color: black;
+    background: rgb(255 241 242);
+    border-left: 2px solid #FD243E;
+}
+
+.newChat {
+    border-bottom: 2px solid rgb(229 231 235);
+    font-weight: 600;
+    position: sticky;
+    top: 0;
+    right: 0;
+    background: white;
+}
+.newChat:hover {
+    background: white;
+}
+
+.newChat img {
+    height: 20px;
+}
+
+.newChat img:hover {
+    filter: invert(22%) sepia(35%) saturate(7093%) hue-rotate(341deg) brightness(105%) contrast(98%);
+}
+
+.header {
+    font-size: 20px;
+    padding: 20px;
+}
+
+.container {
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px 0px;
+    background: rgb(255, 255, 255);
+    overflow: hidden;
+    height: inherit;
+}
+
+.container:hover {
+    overflow-y: scroll;
+}
+.container &::-webkit-scrollbar {
+    background-color: transparent;
+    width: 10px;
+}
+.container &::-webkit-scrollbar-thumb {
+    background-color: transparent;
+}
+  
+.container:hover &::-webkit-scrollbar-thumb {
+    background-color: black;
+}

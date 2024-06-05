@@ -1,0 +1,57 @@
+.chat {
+    height: 100%;
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    justify-content: end;
+    background: #f1f1f2;
+    overflow: auto;
+    overflow-y: scroll;
+    height: calc(100% - 136px);
+    mask-image: linear-gradient(to top, white 80%, transparent);
+    -webkit-mask-image: linear-gradient(to top, white 80%, transparent);
+    -moz-mask-image:  linear-gradient(to top, white 80%, transparent);
+    -o-mask-image:  linear-gradient(to top, white 80%, transparent);
+}
+
+.message {
+    background: white;
+    padding: 8px;
+    border: 1px solid lightgray;
+    width: fit-content;
+    height: fit-content;
+    animation: message 0.15s ease-out 0s forwards;
+    animation-delay: var(--timeline);
+    transform-origin: 0 100%;
+    padding-top: 0;
+    transform: scale(0);
+    max-height: 0;
+    overflow: hidden;
+    border-radius : 12px 12px 0 12px;
+}
+
+@keyframes message {
+    0% {
+      max-height: 100vmax;
+    }
+    80% {
+      transform: scale(1.1);
+    }
+    100% {
+      transform: scale(1);
+      max-height: 100vmax;
+      overflow: visible;
+      padding-top: 8px;
+    }
+}
+
+.newChat {
+  padding: 20px;
+  width:100%;
+  border-top: 1px solid #fafafa;
+  display: flex;
+  position: absolute;
+  bottom: 0;
+  background: white; 
+}
