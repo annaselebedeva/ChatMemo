@@ -26,13 +26,26 @@ const MainMobile = ({ isMobile, currUser, chatData, handleChangeUser, handleUpda
         }
     }
 
+    const handleBack = () => {
+        changeView(!contactsPanel);
+    }
+
     return (
         <div 
         className={`flex w-full border-t-4 border-rose-400 overflow-auto flex-col`}
         style={{height: "calc(100% - 75px)"}}>
             {!contactsPanel 
-                ? <SideBar currentUser={currUser} users={chatData} changeUser={handleChange} />
-                : ((currUser && chatData.length) ? <ChatArea isMobile={isMobile} user={currUser} updateUser={handleUpdateUser} /> : <NoUserSelected />)
+                ? <SideBar
+                    currentUser={currUser}
+                    users={chatData}
+                    changeUser={handleChange} />
+                : ((currUser && chatData.length)
+                    ? <ChatArea
+                        isMobile={isMobile}
+                        user={currUser}
+                        updateUser={handleUpdateUser}
+                        handleBack={handleBack} />
+                    : <NoUserSelected />)
             }
             <MobileFooter handleClickMenu={handleClickMenu} />
         </div>

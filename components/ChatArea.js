@@ -5,7 +5,7 @@ import { PRIMARY_COLOR } from "@/constants/constants";
 import ChatInfoModal from "./ChatInfoModal";
 import Message from "./Message";
 
-const ChatArea = ({ isMobile, user, updateUser }) => {
+const ChatArea = ({ isMobile, user, updateUser, handleBack }) => {
     const [msgs, addMsg] = useState(user.messages || []);
     const [currMsg, updateCurr] = useState("");
     const [isDeleteModalOpen, setDeleteModalOpen] = useState(false);
@@ -57,9 +57,20 @@ const ChatArea = ({ isMobile, user, updateUser }) => {
     }
 
     return (
-        <div className={`flex-9 basis-full overflow-scroll relative ${isMobile ? "" : "border-l-2 "}`}>
+        <div className={`basis-full overflow-hidden relative ${isMobile ? "" : "border-l-2 "}`}>
             <div className="border-b-2 border-gray-200 flex justify-between items-center">
-                <span className="py-4 px-8 font-semibold">{user.firstName} {user.lastName}</span>
+                <span className="py-4 px-4 font-semibold flex items-center flex-nowrap">
+                    {isMobile 
+                        ? <img 
+                            src="/back.png"
+                            alt="Back to contacts"
+                            className="h-6 mr-4"
+                            onClick={handleBack}
+                            />
+                        : ""
+                    }
+                    <div className="text-ellipsis text-nowrap overflow-hidden">{user.firstName} {user.lastName}</div>
+                </span>
                 <div className="flex items-center">
                 <img src="/info.svg"
                          className="w-14 py-4 px-4 cursor-pointer"
