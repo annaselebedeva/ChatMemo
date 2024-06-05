@@ -4,7 +4,7 @@
   background: #f1f1f2;
   overflow: auto;
   overflow-y: scroll;
-  height: calc(100% - 136px);
+  height: calc(100% - 142px);
   -ms-overflow-style: none;  /* Internet Explorer 10+ */
   scrollbar-width: none;  /* Firefox */
 }
@@ -24,6 +24,7 @@
   padding-top: 0;
   transform: scale(0);
   max-height: 0;
+  cursor: default;
   overflow: hidden;
   border-radius : 12px 12px 0 12px;
 }
@@ -57,4 +58,10 @@
 
 .newChat button, .mobileNewChat button {
   margin-top: 0;
+}
+
+.messageA {
+  background: rgb(244 63 94);
+  color: white;
+  border-radius: 12px 12px 12px 0;
 }

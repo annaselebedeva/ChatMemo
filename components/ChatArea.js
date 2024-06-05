@@ -36,14 +36,13 @@ const ChatArea = ({ isMobile, user, updateUser, handleBack }) => {
 
     const showMsgs = msgs.map((m, i) => {
         return (
-            <Message key={i} data={m.data} timestamp={m.timestamp} />
+            <Message key={i} messageData={m} />
         );
     })
 
     const handleSend = (e) => {
         if (currMsg) {
-            const date = new Intl.DateTimeFormat('en-US', {hour: '2-digit', minute: '2-digit'}).format(Date.now());
-            const updatedMessages = [...msgs,{"id": Date.now(), "data": currMsg, "timestamp": date}];
+            const updatedMessages = [...msgs,{"id": Date.now(), "data": currMsg, "timestamp": Date.now()}];
             addMsg(updatedMessages);
             let updatedUser = {...user};
             updatedUser.messages = updatedMessages;
