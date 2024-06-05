@@ -29,10 +29,6 @@
     background: white;
 }
 
-.newChat img {
-    height: 20px;
-}
-
 .newChat img:hover {
     filter: invert(22%) sepia(35%) saturate(7093%) hue-rotate(341deg) brightness(105%) contrast(98%);
 }
