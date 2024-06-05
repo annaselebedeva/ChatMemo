@@ -52,3 +52,20 @@
   bottom: 0;
   background: white; 
 }
+
+.mobileNewChat {
+  padding: 20px;
+  width:100%;
+  border-top: 1px solid #fafafa;
+  display: flex;
+  align-items: center;
+  position: absolute;
+  bottom: 0;
+  background: white; 
+}
+.mobileNewChat input {
+  height: max-content;
+}
+.mobileNewChat button {
+  margin-top: 0;
+}

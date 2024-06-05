@@ -1,5 +1,6 @@
 import React, { useRef, useState, useEffect } from "react";
 import styles from "../styles/Modal.module.css";
+import { isMobile } from "react-device-detect";
 
 const Modal = ({ isOpen, onClose, children }) => {
     const modalRef = useRef(null);
@@ -35,14 +36,25 @@ const Modal = ({ isOpen, onClose, children }) => {
 
     return (
         <dialog ref={modalRef}
-                className={styles.modalContent}
+                className={`${styles.modalContent} ${styles.mobileModalContent}`}
                 onKeyDown={handleKeyDown} 
                 onClick={e => { e.stopPropagation() }}>
-                <span 
-                    className={styles.close}
-                    onClick={handleCloseModal}>
-                        &times;
-                </span>
+                {isMobile 
+                    ?
+                        <span className="w-" onClick={handleCloseModal}>
+                                <img 
+                                src="/back.png"
+                                alt="Back to contacts"
+                                className="h-6 mt-1"
+                                />
+                        </span>
+                    :
+                        <span 
+                            className={styles.close}
+                            onClick={handleCloseModal}>
+                                &times;
+                        </span>
+                }
                 { children }
         </dialog>
     );

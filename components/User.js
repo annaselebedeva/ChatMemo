@@ -1,10 +1,26 @@
-const User = ({ active, styles, usr, changeUser }) => {
+import React from "react";
+import SwipeToDelete from "react-swipe-to-delete-ios";
+
+const User = ({ isMobile, active, styles, usr, changeUser, deleteUser }) => {
     return (
-        <div 
-            className={`${active ? styles.active : ""} ${styles.user}`}
-            onClick={() => changeUser(usr)}>
-                {usr.firstName} {usr.lastName}
-        </div>
+        isMobile 
+        ?
+            <SwipeToDelete
+                onDelete={() => deleteUser(usr)}
+                height={60}
+            >
+                <div 
+                    className={`${active ? styles.active : ""} ${styles.user}`}
+                    onClick={() => changeUser(usr)}>
+                        {usr.firstName} {usr.lastName}
+                </div>
+            </SwipeToDelete>
+        : 
+            <div 
+                className={`${active ? styles.active : ""} ${styles.user}`}
+                onClick={() => changeUser(usr)}>
+                    {usr.firstName} {usr.lastName}
+            </div>
     );
 }
 

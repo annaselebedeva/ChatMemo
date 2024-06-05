@@ -1,7 +1,7 @@
 import React,{ useState, useCallback, useEffect } from "react";
 import styles from "../styles/ChatArea.module.css";
 import DeleteModal from './DeleteModal';
-import { PRIMARY_COLOR } from "@/constants/constants";
+import { PRIMARY_BUTTON_STYLES } from "@/constants/constants";
 import ChatInfoModal from "./ChatInfoModal";
 import Message from "./Message";
 
@@ -56,10 +56,16 @@ const ChatArea = ({ isMobile, user, updateUser, handleBack }) => {
         updateUser(user, true);
     }
 
+    const capitalize = (str) => {
+        return str.split(" ").map((word) => { 
+            return word[0].toUpperCase() + word.substring(1).toLowerCase(); 
+        }).join(" ");
+    }
+
     return (
         <div className={`basis-full overflow-hidden relative ${isMobile ? "" : "border-l-2 "}`}>
             <div className="border-b-2 border-gray-200 flex justify-between items-center">
-                <span className="py-4 px-4 font-semibold flex items-center flex-nowrap">
+                <span className="py-4 px-4 font-semibold flex items-center flex-nowrap overflow-hidden">
                     {isMobile 
                         ? <img 
                             src="/back.png"
@@ -69,26 +75,34 @@ const ChatArea = ({ isMobile, user, updateUser, handleBack }) => {
                             />
                         : ""
                     }
-                    <div className="text-ellipsis text-nowrap overflow-hidden">{user.firstName} {user.lastName}</div>
+                    <div className="text-ellipsis text-nowrap overflow-hidden">
+                        {capitalize(`${user.firstName} ${user.lastName}`)}</div>
                 </span>
-                <div className="flex items-center">
+                <div className="flex items-center flex-none">
                 <img src="/info.svg"
                          className="w-14 py-4 px-4 cursor-pointer"
                          onClick={handleOpenInfoModal}
                          alt="View chat info" />
                     <ChatInfoModal isOpen={isInfoModalOpen} onClose={handleCloseInfoModal} userData={user} />
-                    <img src="/trash.png"
-                         className="h-14 py-4 pl-4 pr-8 cursor-pointer"
-                         onClick={handleOpenDeleteModal}
-                         alt="Delete chat" />
-                    <DeleteModal isOpen={isDeleteModalOpen} onClose={handleCloseDeleteModal} onSubmit={handleDelete} />
-
+                    {isMobile
+                        ? ''
+                        : <>
+                            <img src="/trash.png"
+                                className="h-14 py-4 pl-4 pr-8 cursor-pointer"
+                                onClick={handleOpenDeleteModal}
+                                alt="Delete chat" />
+                            <DeleteModal
+                                isOpen={isDeleteModalOpen}
+                                onClose={handleCloseDeleteModal}
+                                onSubmit={handleDelete} />
+                        </>
+                    }
                 </div>
             </div>
             <ol reversed className={styles.chat}>
                 { showMsgs }
             </ol>
-            <div className={styles.newChat}>
+            <div className={isMobile ? styles.mobileNewChat : styles.newChat}>
                 <input 
                     ref={msgRef}
                     type="text" 
@@ -102,7 +116,7 @@ const ChatArea = ({ isMobile, user, updateUser, handleBack }) => {
                     onChange= {(e) => updateCurr(e.target.value)} 
                 />
                 <button
-                    className={`border rounded-md bg-rose-200 px-8 py-2 hover:bg-rose-300`}
+                    className="border rounded-md bg-rose-300 px-8 py-2 hover:bg-rose-400 mt-6 w-fit"
                     onClick={handleSend}>
                         Send
                 </button>

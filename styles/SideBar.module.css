@@ -2,7 +2,7 @@
     padding: 16px;
     text-overflow: ellipsis;
     text-wrap: nowrap;
-    overflow: auto;
+    overflow: hidden;
     cursor: pointer;
     color: rgba(17, 16, 19, 0.8);
 }
@@ -11,10 +11,10 @@
     background: rgb(0,0,0,0.04);
 }
 
-.user.active {
+.user.active, .mobileContainer .user.active {
     color: black;
     background: rgb(255 241 242);
-    border-left: 2px solid #FD243E;
+    border-left: 3px solid #FD243E;
 }
 
 .newChat {
@@ -48,19 +48,25 @@
 .container:hover {
     overflow-y: scroll;
 }
-.container &::-webkit-scrollbar {
-    background-color: transparent;
-    width: 10px;
-}
-.container &::-webkit-scrollbar-thumb {
-    background-color: transparent;
-}
-  
-.container:hover &::-webkit-scrollbar-thumb {
-    background-color: black;
-}
 
-.mContainer {
+.mobileContainer {
     width: 100%;
     overflow-y: scroll;
+    background: white;
+}
+
+.mobileContainer .user {
+    height: 60px;
+    border: 1px solid white;
+    width: 100%;
+    position: relative;
+    background-color: white;
+}
+
+.mobileContainer .newChat {
+    border-bottom: 2px solid rgb(229 231 235);
+}
+
+.mobileContainer .user:hover {
+    background: white;
 }

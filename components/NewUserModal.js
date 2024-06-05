@@ -3,14 +3,14 @@ import styles from "../styles/Modal.module.css";
 import Modal from "./Modal";
 import 'react-phone-number-input/style.css';
 import PhoneInput, {isValidPhoneNumber} from 'react-phone-number-input';
-import { PRIMARY_COLOR } from "@/constants/constants";
+import { PRIMARY_BUTTON_STYLES } from "@/constants/constants";
 
 const fields = [{label: "firstName", text: "First Name", required: true},
                 {label: "lastName", text: "Last Name", required: true},
                 {label: "email", text: "Email", required: false},
                 {label: "phone", text: "Phone", required: false}];
 
-const NewUserModal = ({ isOpen, onClose, onSubmit }) => {
+const NewUserModal = ({ isMobile, isOpen, onClose, onSubmit }) => {
     const [modalData, updateData] = useState({});
     const [isError, setError] = useState([]);
 
@@ -77,8 +77,7 @@ const NewUserModal = ({ isOpen, onClose, onSubmit }) => {
                     <PhoneInput
                         className={`${isError.includes(i) ? styles.error : ""}
                                     ${styles.fieldInput}
-                                    border-rose-500
-                                    bg-rose-50`}
+                                    ${isMobile ? styles.mobileFieldInput : ""}`}
                         placeholder={f.text}
                         value={modalData[f.label] || ""}
                         onChange={(val) => updateField(f.label, val, i, true)} />
@@ -91,7 +90,8 @@ const NewUserModal = ({ isOpen, onClose, onSubmit }) => {
                 <div key={i} className="flex mb-4">
                     <input 
                         className={`${isError.includes(i) ? styles.error : ""}
-                                    ${styles.fieldInput}`}
+                                    ${styles.fieldInput}
+                                    ${isMobile ? styles.mobileFieldInput : ""}`}
                         placeholder={f.text}
                         name={f.label}
                         value={modalData[f.label] || ""}
@@ -103,7 +103,7 @@ const NewUserModal = ({ isOpen, onClose, onSubmit }) => {
     });
 
     return (
-        <Modal isOpen={isOpen} onClose={onClose}>
+        <Modal isMobile={isMobile} isOpen={isOpen} onClose={onClose}>
             <div className="flex flex-col items-center">
                 <h1 className="text-2xl py-2 pb-2 mb-6 text-center">Add New Chat</h1>
                 <section className="flex flex-col items-center">
@@ -111,10 +111,10 @@ const NewUserModal = ({ isOpen, onClose, onSubmit }) => {
                 </section>
 
                 <button 
-                    className={`border rounded-md bg-rose-200 px-8 py-2 hover:bg-rose-300 mt-6 w-fit`}
+                    className={`border rounded-md bg-rose-300 px-8 py-2 hover:bg-rose-400 mt-6 w-fit ${isMobile ? styles.mobileButton : ""}`}
                     onClick={handleSubmit}>
                         Open New Chat
-                </button>
+                </button><>&nbsp;</>
             </div>
         </Modal>
     );

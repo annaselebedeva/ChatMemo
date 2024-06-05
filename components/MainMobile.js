@@ -14,16 +14,9 @@ const MainMobile = ({ isMobile, currUser, chatData, handleChangeUser, handleUpda
         }
     }
 
-    const handleChange = (usr) => {
-        handleChangeUser(usr);
+    const handleChange = (usr, newUsr) => {
+        handleChangeUser(usr, newUsr);
         changeView(!contactsPanel);
-    }
-
-    const handleUpdateUser = (user, toDelete) => {
-        handleUpdate(user, toDelete);
-        if (toDelete) {
-            changeView(!contactsPanel);
-        }
     }
 
     const handleBack = () => {
@@ -36,14 +29,16 @@ const MainMobile = ({ isMobile, currUser, chatData, handleChangeUser, handleUpda
         style={{height: "calc(100% - 75px)"}}>
             {!contactsPanel 
                 ? <SideBar
+                    isMobile={isMobile}
                     currentUser={currUser}
                     users={chatData}
+                    updateUser={handleUpdate}
                     changeUser={handleChange} />
                 : ((currUser && chatData.length)
                     ? <ChatArea
                         isMobile={isMobile}
                         user={currUser}
-                        updateUser={handleUpdateUser}
+                        updateUser={handleUpdate}
                         handleBack={handleBack} />
                     : <NoUserSelected />)
             }

@@ -24,6 +24,8 @@
 
 .fieldInput {
     padding: 4px;
+    border: 1px solid lightgray;
+    border-radius: 4px;
     width: 300px;
 }
 .fieldInput.error {
@@ -32,11 +34,6 @@
     border-color: rgb(244 63 94) rgb(244 63 94) rgb(244 63 94) rgb(251 113 133);
     border-image: initial;
     background:  rgb(255 241 242);
-}
-
-.fieldInput {
-    border: 1px solid lightgray;
-    border-radius: 4px;
 }
 
 .modalContent[open] {
@@ -55,4 +52,24 @@
         transform: scaleY(1);
         display: block;
     }
+}
+
+.mobileModalContent {
+    border: unset;
+    min-width: 100%;
+    min-height: 100%;
+    margin: 0;
+    padding: 16px;
+    border-radius: unset;
+}
+
+.mobileFieldInput {
+    width: unset;
+    min-width: 250px;
+    padding: 10px;
+}
+
+.mobileButton {
+    min-width: 250px;
+    padding: 10px;
 }
