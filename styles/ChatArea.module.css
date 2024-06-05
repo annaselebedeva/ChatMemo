@@ -1,41 +1,46 @@
 .chat {
-    height: 100%;
-    padding: 32px;
-    background: #f1f1f2;
-    overflow: auto;
-    overflow-y: scroll;
-    height: calc(100% - 136px);
+  height: 100%;
+  padding: 32px;
+  background: #f1f1f2;
+  overflow: auto;
+  overflow-y: scroll;
+  height: calc(100% - 136px);
+  -ms-overflow-style: none;  /* Internet Explorer 10+ */
+  scrollbar-width: none;  /* Firefox */
+}
+.chat::-webkit-scrollbar { 
+  display: none;  /* Safari and Chrome */
 }
 
 .message {
-    background: white;
-    padding: 8px;
-    border: 1px solid lightgray;
-    width: fit-content;
-    height: fit-content;
-    animation: message 0.15s ease-out 0s forwards;
-    animation-delay: var(--timeline);
-    transform-origin: 0 100%;
-    padding-top: 0;
-    transform: scale(0);
-    max-height: 0;
-    overflow: hidden;
-    border-radius : 12px 12px 0 12px;
+  background: white;
+  padding: 8px;
+  border: 1px solid lightgray;
+  width: fit-content;
+  height: fit-content;
+  animation: message 0.15s ease-out 0s forwards;
+  animation-delay: var(--timeline);
+  transform-origin: 0 100%;
+  padding-top: 0;
+  transform: scale(0);
+  max-height: 0;
+  overflow: hidden;
+  border-radius : 12px 12px 0 12px;
 }
 
 @keyframes message {
-    0% {
-      max-height: 100vmax;
-    }
-    80% {
-      transform: scale(1.1);
-    }
-    100% {
-      transform: scale(1);
-      max-height: 100vmax;
-      overflow: visible;
-      padding-top: 8px;
-    }
+  0% {
+    max-height: 100vmax;
+  }
+  80% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+    max-height: 100vmax;
+    overflow: visible;
+    padding-top: 8px;
+  }
 }
 
 .newChat {

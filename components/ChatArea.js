@@ -1,16 +1,15 @@
-import React,{ useState, useCallback, useEffect, useRef } from "react";
+import React,{ useState, useCallback, useEffect } from "react";
 import styles from "../styles/ChatArea.module.css";
 import DeleteModal from './DeleteModal';
 import { PRIMARY_COLOR } from "@/constants/constants";
 import ChatInfoModal from "./ChatInfoModal";
-import Image from "next/image";
+import Message from "./Message";
 
 const ChatArea = ({ user, updateUser }) => {
     const [msgs, addMsg] = useState(user.messages || []);
     const [currMsg, updateCurr] = useState("");
     const [isDeleteModalOpen, setDeleteModalOpen] = useState(false);
     const [isInfoModalOpen, setInfoModalOpen] = useState(false);
-    const currMsgRef = useRef(null);
 
     const handleOpenDeleteModal = () => {
         setDeleteModalOpen(true);
@@ -35,20 +34,13 @@ const ChatArea = ({ user, updateUser }) => {
         addMsg(user.messages);
     }, [user]);
 
-    useEffect(() => { // scroll to bottom on message send
-        currMsgRef.current?.scrollTo(0,10000); // TODO make work with scrollIntoView
-      }, [msgs]);
-
     const showMsgs = msgs.map((m, i) => {
         return (
-            <li key={i} className="flex flex-col items-end mb-3">
-                <div className={styles.message}>{m.data}</div>
-                <div className="text-slate-400 text-sm">{m.timestamp}</div>
-            </li>
+            <Message data={m.data} timestamp={m.timestamp} />
         );
     })
 
-    const handleSend = () => {
+    const handleSend = (e) => {
         if (currMsg) {
             const date = new Intl.DateTimeFormat('en-US', {hour: '2-digit', minute: '2-digit'}).format(Date.now());
             const updatedMessages = [...msgs,{"id": Date.now(), "data": currMsg, "timestamp": date}];
@@ -69,27 +61,22 @@ const ChatArea = ({ user, updateUser }) => {
             <div className="border-b-2 border-gray-200 flex justify-between items-center">
                 <span className="py-4 px-8 font-semibold">{user.firstName} {user.lastName}</span>
                 <div className="flex items-center">
-                    <Image src="/trash.png"
-                         className="py-4 px-4 cursor-pointer"
-                         onClick={handleOpenDeleteModal}
-                         width={56}
-                         height={56}
-                         alt="Delete chat" />
-                    <DeleteModal isOpen={isDeleteModalOpen} onClose={handleCloseDeleteModal} onSubmit={handleDelete} />
-                    <Image src="/dots.png"
-                         className="py-4 pl-4 pr-8 cursor-pointer"
+                <img src="/info.svg"
+                         className="w-14 py-4 px-4 cursor-pointer"
                          onClick={handleOpenInfoModal}
-                         width={72}
-                         height={72}
                          alt="View chat info" />
                     <ChatInfoModal isOpen={isInfoModalOpen} onClose={handleCloseInfoModal} userData={user} />
+                    <img src="/trash.png"
+                         className="h-14 py-4 pl-4 pr-8 cursor-pointer"
+                         onClick={handleOpenDeleteModal}
+                         alt="Delete chat" />
+                    <DeleteModal isOpen={isDeleteModalOpen} onClose={handleCloseDeleteModal} onSubmit={handleDelete} />
+
                 </div>
             </div>
-            {/* <div className="overflow-scroll h-inherit" style={{height: "calc(100% - 136px)"}}> */}
-                <ol reversed className={styles.chat} ref={currMsgRef}>
-                    { showMsgs }
-                </ol>
-            {/* </div> */}
+            <ol reversed className={styles.chat}>
+                { showMsgs }
+            </ol>
             <div className={styles.newChat}>
                 <input 
                     ref={msgRef}
@@ -99,7 +86,7 @@ const ChatArea = ({ user, updateUser }) => {
                     value={currMsg}
                     onKeyDown={(e) => {
                         if (e.key === "Enter")
-                            handleSend();
+                            handleSend(e);
                         }}
                     onChange= {(e) => updateCurr(e.target.value)} 
                 />

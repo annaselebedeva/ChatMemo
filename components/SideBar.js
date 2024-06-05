@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 
 import styles from "../styles/SideBar.module.css";
 import NewUserModal from "./NewUserModal";
-import Image from "next/image";
 
 const SideBar = ({ currentUser, users, changeUser }) => {
     //params: list of users and usergroups (should you be able to create multiple groups with the same users?)
@@ -42,7 +41,7 @@ const SideBar = ({ currentUser, users, changeUser }) => {
                 Users
                 <div 
                     onClick={handleOpenModal}>
-                        <Image src="/new-chat.svg" width={20} height={20} alt="Create new chat" />
+                        <img src="/new-chat.svg" alt="Create new chat" />
                 </div>
             </div>
             <NewUserModal isOpen={isModalOpen} onClose={handleCloseModal} onSubmit={handleNewChat} />
