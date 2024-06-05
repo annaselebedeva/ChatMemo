@@ -1,14 +1,11 @@
 import React, { useState } from "react";
 
-import SideBar from "./SideBar";
-import ChatArea from "./ChatArea";
 import Banner from "./Banner";
-import NoUserSelected from "./NoUserSelected";
-import ResizablePanel from "./ResizablePanel";
+import MainDesktop from "./MainDesktop";
+import MainMobile from "./MainMobile";
 import {isMobile} from 'react-device-detect';
-
 import users from '../pages/api/mockdata.json';
-import { INIT_WIDTH_LEFT_PANEL, MAX_WIDTH_LEFT_PANEL, MIN_WIDTH_LEFT_PANEL, PRIMARY_COLOR } from "@/constants/constants";
+import { PRIMARY_COLOR } from "@/constants/constants";
  // {data: "hello", time: "223-343430", id:234, from: 0},{data: "hello", time: "223-343430", id:234, from: 1}
 
 const Main = () => {
@@ -51,20 +48,11 @@ const Main = () => {
         <>
             <Banner />
             <div className={`flex w-full border-t-4 border-${PRIMARY_COLOR}-400 overflow-auto`} style={{height: "calc(100% - 75px)"}}>
-                {isMobile ?
-                    <>
-                        <SideBar currentUser={currUser} users={chatData} changeUser={handleChangeUser} />
-                        {(currUser && chatData.length) ? <ChatArea user={currUser} updateUser={handleUpdate} /> : <NoUserSelected />}
-                        <Footer className="" />
-                    </>
-                :
-                    <>
-                        <ResizablePanel minSize={INIT_WIDTH_LEFT_PANEL} initialSize={MIN_WIDTH_LEFT_PANEL} maxSize={MAX_WIDTH_LEFT_PANEL}>
-                            <SideBar currentUser={currUser} users={chatData} changeUser={handleChangeUser} />
-                        </ResizablePanel>
-                        {(currUser && chatData.length) ? <ChatArea user={currUser} updateUser={handleUpdate} /> : <NoUserSelected />}
-                    </>
-                }
+                {/* {isMobile
+                    ? <MainMobile currUser={currUser} chatData={chatData} handleChangeUser={handleChangeUser} handleUpdate={handleUpdate} />
+                    :  */}
+                    <MainDesktop currUser={currUser} chatData={chatData} handleChangeUser={handleChangeUser} handleUpdate={handleUpdate} />
+                {/* } */}
             </div>
         </>
     );
