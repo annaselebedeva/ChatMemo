@@ -111,7 +111,7 @@ const NewUserModal = ({ isMobile, isOpen, onClose, onSubmit }) => {
                 </section>
 
                 <button 
-                    className={`border rounded-md bg-rose-300 px-8 py-2 hover:bg-rose-400 mt-6 w-fit ${isMobile ? styles.mobileButton : ""}`}
+                    className={`border rounded-md bg-rose-500 px-8 py-2 text-white hover:bg-rose-600 mt-6 w-fit ${isMobile ? styles.mobileButton : ""}`}
                     onClick={handleSubmit}>
                         Open New Chat
                 </button><>&nbsp;</>

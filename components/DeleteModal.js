@@ -10,7 +10,7 @@ const DeleteModal = ({ isOpen, onClose, onSubmit }) => {
             <section className="flex flex-col">
                 <h1 className="text-2xl py-2 pb-2 mb-2 text-center cursor-default">Delete Chat?</h1>
                 <ButtonGroup>
-                    <Button style="border rounded-md bg-rose-300 px-8 py-2 hover:bg-rose-400 hover:bg- mt-6 w-fit" 
+                    <Button style="border rounded-md bg-rose-500 text-white px-8 py-2 hover:bg-rose-600 hover:bg- mt-6 w-fit" 
                             onClickButton={onSubmit}>
                                 Yes
                     </Button>

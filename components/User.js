@@ -8,6 +8,7 @@ const User = ({ isMobile, active, styles, usr, changeUser, deleteUser }) => {
             <SwipeToDelete
                 onDelete={() => deleteUser(usr)}
                 height={60}
+                deleteColor="rgb(244, 63, 94)"
             >
                 <div 
                     className={`${active ? styles.active : ""} ${styles.user}`}

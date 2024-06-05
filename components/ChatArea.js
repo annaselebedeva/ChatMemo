@@ -62,7 +62,7 @@ const ChatArea = ({ isMobile, user, updateUser, handleBack }) => {
     }
 
     return (
-        <div className={`basis-full overflow-hidden relative ${isMobile ? "" : "border-l-2 "}`}>
+        <div className="basis-full overflow-hidden relative">
             <div className="border-b-2 border-gray-200 flex justify-between items-center">
                 <span className="py-4 px-4 font-semibold flex items-center flex-nowrap overflow-hidden">
                     {isMobile 
@@ -115,7 +115,7 @@ const ChatArea = ({ isMobile, user, updateUser, handleBack }) => {
                     onChange= {(e) => updateCurr(e.target.value)} 
                 />
                 <button
-                    className="border rounded-md bg-rose-300 px-8 py-2 hover:bg-rose-400 mt-6 w-fit"
+                    className="border rounded-md text-white bg-rose-500 px-8 py-2 hover:bg-rose-600 mt-6 w-fit"
                     onClick={handleSend}>
                         Send
                 </button>

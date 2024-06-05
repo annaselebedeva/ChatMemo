@@ -43,6 +43,7 @@
     background: rgb(255, 255, 255);
     overflow: hidden;
     height: inherit;
+    border-right: 1px solid rgb(251 113 133);
 }
 
 .container:hover {
