@@ -43,7 +43,7 @@
   }
 }
 
-.newChat {
+.newChat, .mobileNewChat {
   padding: 20px;
   width:100%;
   border-top: 1px solid #fafafa;
@@ -51,21 +51,10 @@
   position: absolute;
   bottom: 0;
   background: white; 
+  height: max-content;
+
 }
 
-.mobileNewChat {
-  padding: 20px;
-  width:100%;
-  border-top: 1px solid #fafafa;
-  display: flex;
-  align-items: center;
-  position: absolute;
-  bottom: 0;
-  background: white; 
-}
-.mobileNewChat input {
-  height: max-content;
-}
-.mobileNewChat button {
+.newChat button, .mobileNewChat button {
   margin-top: 0;
 }

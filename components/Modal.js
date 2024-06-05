@@ -36,7 +36,7 @@ const Modal = ({ isOpen, onClose, children }) => {
 
     return (
         <dialog ref={modalRef}
-                className={`${styles.modalContent} ${styles.mobileModalContent}`}
+                className={`${styles.modalContent} ${isMobile ? styles.mobileModalContent : ""}`}
                 onKeyDown={handleKeyDown} 
                 onClick={e => { e.stopPropagation() }}>
                 {isMobile 
