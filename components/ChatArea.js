@@ -74,7 +74,7 @@ const ChatArea = ({ isMobile, user, updateUser, handleBack }) => {
                             />
                         : ""
                     }
-                    <div className="text-ellipsis text-nowrap overflow-hidden">
+                    <div className="text-ellipsis text-nowrap overflow-hidden cursor-default">
                         {capitalize(`${user.firstName} ${user.lastName}`)}</div>
                 </span>
                 <div className="flex items-center flex-none">

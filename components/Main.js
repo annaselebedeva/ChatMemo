@@ -6,8 +6,6 @@ import users from '../pages/api/mockdata.json';
 import dynamic from 'next/dynamic';
 import { isMobile } from 'react-device-detect';
 
-  // {data: "hello", time: "223-343430", id:234, from: 0},{data: "hello", time: "223-343430", id:234, from: 1}
-
 const MainComponent = dynamic(() => isMobile ? import('./MainMobile') : import('./MainDesktop'), { ssr: false })
 
 const Main = () => {

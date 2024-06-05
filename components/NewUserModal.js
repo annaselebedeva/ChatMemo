@@ -105,7 +105,7 @@ const NewUserModal = ({ isMobile, isOpen, onClose, onSubmit }) => {
     return (
         <Modal isMobile={isMobile} isOpen={isOpen} onClose={onClose}>
             <div className="flex flex-col items-center">
-                <h1 className="text-2xl py-2 pb-2 mb-6 text-center">Add New Chat</h1>
+                <h1 className="text-2xl py-2 pb-2 mb-6 text-center cursor-default">Add New Chat</h1>
                 <section className="flex flex-col items-center">
                     {generateFields}
                 </section>

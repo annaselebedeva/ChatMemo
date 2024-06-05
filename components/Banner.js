@@ -2,7 +2,7 @@ import React from "react";
 import { PRIMARY_COLOR } from "@/constants/constants";
 
 const ChatArea = () => (
-  <div className="p-5 text-2xl bg-white font-bold"> {/*#FD243E*/}
+  <div className="p-5 text-2xl bg-white font-bold cursor-default">
     <img src="/chat-bubble.svg"
          className={`color-rose-500 w-8 inline mr-2`}
          alt="ChatMemo logo"

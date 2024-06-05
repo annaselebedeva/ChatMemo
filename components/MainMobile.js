@@ -42,7 +42,7 @@ const MainMobile = ({ isMobile, currUser, chatData, handleChangeUser, handleUpda
                         handleBack={handleBack} />
                     : <NoUserSelected />)
             }
-            <MobileFooter handleClickMenu={handleClickMenu} />
+            <MobileFooter handleClickMenu={handleClickMenu} selected={contactsPanel} />
         </div>
     );
 }
