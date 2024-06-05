@@ -5,6 +5,7 @@ import { isMobile } from "react-device-detect";
 const Modal = ({ isOpen, onClose, children }) => {
     const modalRef = useRef(null);
     const [isModalOpen, setModalOpen] = useState(isOpen);
+    const innerRef = useRef(null);
 
     useEffect(() => {
         setModalOpen(isOpen);
@@ -20,6 +21,27 @@ const Modal = ({ isOpen, onClose, children }) => {
           }
         }
     }, [isModalOpen]);
+
+    useEffect(
+        () => {
+        const listener = (event) => {
+            if (!innerRef.current) {
+                return;
+            }
+
+            if (event.target === modalRef.current) {
+                handleCloseModal(event);
+            }
+        };
+        document.addEventListener("mousedown", listener);
+        document.addEventListener("touchstart", listener);
+        return () => {
+            document.removeEventListener("mousedown", listener);
+            document.removeEventListener("touchstart", listener);
+        };
+        },
+        [innerRef]
+    );
 
     const handleCloseModal = () => {
         if (onClose) {
@@ -39,6 +61,7 @@ const Modal = ({ isOpen, onClose, children }) => {
                 className={`${styles.modalContent} ${isMobile ? styles.mobileModalContent : ""}`}
                 onKeyDown={handleKeyDown} 
                 onClick={e => { e.stopPropagation() }}>
+            <div ref={innerRef} className="px-8 pt-6 pb-8">
                 {isMobile 
                     ?
                         <span className="w-" onClick={handleCloseModal}>
@@ -56,6 +79,7 @@ const Modal = ({ isOpen, onClose, children }) => {
                         </span>
                 }
                 { children }
+            </div>
         </dialog>
     );
 };
