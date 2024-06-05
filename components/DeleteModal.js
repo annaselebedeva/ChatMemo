@@ -9,7 +9,7 @@ const DeleteModal = ({ isOpen, onClose, onSubmit }) => {
                 <h1 className="text-2xl py-2 pb-2 mb-2 text-center">Delete Chat?</h1>
                 <div className="flex justify-center">
                     <button 
-                        className={`border rounded-md bg-${PRIMARY_COLOR}-200 px-8 py-2 hover:bg-${PRIMARY_COLOR}-300 mt-6 w-fit mr-4`}
+                        className={`border rounded-md bg-rose-200 px-8 py-2 hover:bg-rose-300 mt-6 w-fit mr-4`}
                         onClick={onSubmit}>
                             Yes
                     </button>

@@ -77,8 +77,8 @@ const NewUserModal = ({ isOpen, onClose, onSubmit }) => {
                     <PhoneInput
                         className={`${isError.includes(i) ? styles.error : ""}
                                     ${styles.fieldInput}
-                                    border-${PRIMARY_COLOR}-500
-                                    bg-${PRIMARY_COLOR}-50`}
+                                    border-rose-500
+                                    bg-rose-50`}
                         placeholder={f.text}
                         value={modalData[f.label] || ""}
                         onChange={(val) => updateField(f.label, val, i, true)} />
@@ -111,7 +111,7 @@ const NewUserModal = ({ isOpen, onClose, onSubmit }) => {
                 </section>
 
                 <button 
-                    className={`border rounded-md bg-${PRIMARY_COLOR}-200 px-8 py-2 hover:bg-${PRIMARY_COLOR}-300 mt-6 w-fit`}
+                    className={`border rounded-md bg-rose-200 px-8 py-2 hover:bg-rose-300 mt-6 w-fit`}
                     onClick={handleSubmit}>
                         Open New Chat
                 </button>

@@ -5,7 +5,7 @@ import { PRIMARY_COLOR } from "@/constants/constants";
 import ChatInfoModal from "./ChatInfoModal";
 import Message from "./Message";
 
-const ChatArea = ({ user, updateUser }) => {
+const ChatArea = ({ isMobile, user, updateUser }) => {
     const [msgs, addMsg] = useState(user.messages || []);
     const [currMsg, updateCurr] = useState("");
     const [isDeleteModalOpen, setDeleteModalOpen] = useState(false);
@@ -57,7 +57,7 @@ const ChatArea = ({ user, updateUser }) => {
     }
 
     return (
-        <div className="flex-9 border-l-2 basis-full overflow-scroll relative">
+        <div className={`flex-9 basis-full overflow-scroll relative ${isMobile ? "" : "border-l-2 "}`}>
             <div className="border-b-2 border-gray-200 flex justify-between items-center">
                 <span className="py-4 px-8 font-semibold">{user.firstName} {user.lastName}</span>
                 <div className="flex items-center">
@@ -91,7 +91,7 @@ const ChatArea = ({ user, updateUser }) => {
                     onChange= {(e) => updateCurr(e.target.value)} 
                 />
                 <button
-                    className={`border rounded-md bg-${PRIMARY_COLOR}-200 px-8 py-2 hover:bg-${PRIMARY_COLOR}-300`}
+                    className={`border rounded-md bg-rose-200 px-8 py-2 hover:bg-rose-300`}
                     onClick={handleSend}>
                         Send
                 </button>
