@@ -1,7 +1,6 @@
 # ChatMemo Documentation
-
+*by Anna Lebedeva*
 ## User Manual
-Usage instructions
 ### Create New Chat
 - Click on create New Chat icon at the top of the Users Panel
 - A modal will pop up
@@ -37,11 +36,12 @@ Usage instructions
 ## Choices Made
 - This project uses Next.js with TailwindCSS
   + Though unfortunately the SSR capabilities of Next could not be used since this is a front-end-only project
-  + The Next CSS Modules were used
+  + Next CSS Modules were used
 - I chose to not use TypeScript as there was limited time for this project, but in another scenario I would have used it
 - For a good user experience I chose a popular chat layout with the Users Panel on the right side, and the chat on the left
 - For accessibility, I chose to use contrasting colors and the ability to use only the keyboard to navigate in the app
 - To fix the hydration issue of having two different DOM trees for mobile and desktop I used next/dynamic for lazy loading
+- For a good user experience, the User Panel is resizable
 
 ## Features and Improvements 
 - Add the capability for a user-to-user connection using Socket.io or Firebase
@@ -52,6 +52,7 @@ Usage instructions
 - Add the capability to send messages with different formats such as images, video, or documents
 - Add a preview of the last sent message in the chat under each user in the User Panel
 - Change the timestamp to reflect time passed since message sent
+- Multiline message capability
 - Save drafts (unsent messages) inside each chat
 - Be able to chat with groups of people instead of just one user
   + View who is in the group
@@ -59,8 +60,11 @@ Usage instructions
 - Save scroll position when navigating between chats/panels
 - Be able to add reactions to messages
 - Dark vs light mode
+- Customizable color theme
 - Animations for changing panels in mobile
 - Search for users
 - Search inside each chat
 - Improve mobile experience
+- Push notifications
+- Login page
 - Unit testing
