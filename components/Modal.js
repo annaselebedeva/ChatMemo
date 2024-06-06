@@ -60,7 +60,7 @@ const Modal = ({ isOpen, onClose, children }) => {
             <div ref={innerRef} className="px-8 pt-6 pb-8">
                 {isMobile 
                     ?
-                        <span className="w-" onClick={handleCloseModal}>
+                        <span onClick={handleCloseModal}>
                                 <img 
                                 src="/back.png"
                                 alt="Back to contacts"
