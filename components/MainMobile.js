@@ -4,7 +4,6 @@ import NoUserSelected from "./NoUserSelected";
 import { PRIMARY_COLOR } from "@/constants/constants";
 import ChatArea from "./ChatArea";
 import { useState } from "react";
-import Div100vh from 'react-div-100vh';
 
 const MainMobile = ({ isMobile, currUser, chatData, handleChangeUser, handleUpdate }) => {
     const [contactsPanel, changeView] = useState(false);
