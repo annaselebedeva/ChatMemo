@@ -25,7 +25,7 @@ const MainMobile = ({ isMobile, currUser, chatData, handleChangeUser, handleUpda
     }
 
     return (
-        <Div100vh>
+        // <Div100vh>
             <div 
                 className={`flex w-full border-t-4 border-rose-400 overflow-auto flex-col`}
                 style={{height: "calc(100% - 75px)"}}>
@@ -46,7 +46,7 @@ const MainMobile = ({ isMobile, currUser, chatData, handleChangeUser, handleUpda
             }
             <MobileFooter handleClickMenu={handleClickMenu} selected={contactsPanel} />
             </div>
-        </Div100vh>
+        // </Div100vh>
     );
 }
 

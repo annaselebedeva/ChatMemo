@@ -18,7 +18,7 @@ export default function Home() {
           content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"
         />
       </Head>
-      <div className="w-full h-screen">
+      <div className="w-full h-dvh">
         <Main />
       </div>
     </>
