@@ -25,28 +25,26 @@ const MainMobile = ({ isMobile, currUser, chatData, handleChangeUser, handleUpda
     }
 
     return (
-        // <Div100vh>
-            <div 
-                className={`flex w-full border-t-4 border-rose-400 overflow-auto flex-col`}
-                style={{height: "calc(100% - 75px)"}}>
-            {!contactsPanel 
-                ? <SideBar
+        <div 
+            className={`flex w-full border-t-4 border-rose-400 overflow-auto flex-col`}
+            style={{height: "calc(100% - 75px)"}}>
+        {!contactsPanel 
+            ? <SideBar
+                isMobile={isMobile}
+                currentUser={currUser}
+                users={chatData}
+                updateUser={handleUpdate}
+                changeUser={handleChange} />
+            : ((currUser && chatData.length)
+                ? <ChatArea
                     isMobile={isMobile}
-                    currentUser={currUser}
-                    users={chatData}
+                    user={currUser}
                     updateUser={handleUpdate}
-                    changeUser={handleChange} />
-                : ((currUser && chatData.length)
-                    ? <ChatArea
-                        isMobile={isMobile}
-                        user={currUser}
-                        updateUser={handleUpdate}
-                        handleBack={handleBack} />
-                    : <NoUserSelected />)
-            }
-            <MobileFooter handleClickMenu={handleClickMenu} selected={contactsPanel} />
-            </div>
-        // </Div100vh>
+                    handleBack={handleBack} />
+                : <NoUserSelected />)
+        }
+        <MobileFooter handleClickMenu={handleClickMenu} selected={contactsPanel} />
+        </div>
     );
 }
 
