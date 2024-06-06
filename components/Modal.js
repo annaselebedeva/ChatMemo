@@ -43,24 +43,20 @@ const Modal = ({ isOpen, onClose, children }) => {
         [innerRef]
     );
 
-    const handleCloseModal = () => {
+    const handleCloseModal = (e) => {
+        if (e?.key && (e?.key !== " " && e?.key !== "Enter" && e?.key !== "Escape")) {
+            return;
+        }
         if (onClose) {
             onClose();
         }
         setModalOpen(false);
     };
 
-    const handleKeyDown = (event) => {
-        if (event.key === "Escape") {
-            handleCloseModal();
-        }
-    };
-
     return (
         <dialog ref={modalRef}
                 className={`${styles.modalContent} ${isMobile ? styles.mobileModalContent : ""}`}
-                onKeyDown={handleKeyDown} 
-                onClick={e => { e.stopPropagation() }}>
+                onCancel={handleCloseModal}>
             <div ref={innerRef} className="px-8 pt-6 pb-8">
                 {isMobile 
                     ?
@@ -74,6 +70,8 @@ const Modal = ({ isOpen, onClose, children }) => {
                     :
                         <span 
                             className={styles.close}
+                            tabIndex={0} 
+                            onKeyDown={handleCloseModal}
                             onClick={handleCloseModal}>
                                 &times;
                         </span>

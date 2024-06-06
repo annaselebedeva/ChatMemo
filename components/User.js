@@ -2,6 +2,12 @@ import React from "react";
 import SwipeToDelete from "react-swipe-to-delete-ios";
 
 const User = ({ isMobile, active, styles, usr, changeUser, deleteUser }) => {
+    const handleChangeUser = (usr, isKeyPress, e) => {
+        if (isKeyPress && (e.key !== 'Enter' && e.key !== ' ')) {
+            return;
+        }
+        changeUser(usr);
+    }
     return (
         isMobile 
         ?
@@ -17,9 +23,11 @@ const User = ({ isMobile, active, styles, usr, changeUser, deleteUser }) => {
                 </div>
             </SwipeToDelete>
         : 
-            <div 
-                className={`${active ? styles.active : ""} ${styles.user}`}
-                onClick={() => changeUser(usr)}>
+            <div tabIndex={0}
+                 aria-label="Select user"
+                 className={`${active ? styles.active : ""} ${styles.user}`}
+                 onKeyDown={(e) => handleChangeUser(usr, true, e)}
+                 onClick={() => handleChangeUser(usr)}>
                     {usr.firstName} {usr.lastName}
             </div>
     );

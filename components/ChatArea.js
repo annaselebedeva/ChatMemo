@@ -12,7 +12,10 @@ const ChatArea = ({ isMobile, user, updateUser, handleBack }) => {
     const [isDeleteModalOpen, setDeleteModalOpen] = useState(false);
     const [isInfoModalOpen, setInfoModalOpen] = useState(false);
 
-    const handleOpenDeleteModal = () => {
+    const handleOpenDeleteModal = (e) => {
+        if (e?.key && (e?.key !== 'Enter' && e?.key !== ' ')) {
+            return;
+        }
         setDeleteModalOpen(true);
     }
 
@@ -20,7 +23,10 @@ const ChatArea = ({ isMobile, user, updateUser, handleBack }) => {
         setDeleteModalOpen(false);
     }
 
-    const handleOpenInfoModal = () => {
+    const handleOpenInfoModal = (e) => {
+        if (e?.key && (e?.key !== 'Enter' && e?.key !== ' ')) {
+            return;
+        }
         setInfoModalOpen(true);
     }
 
@@ -57,7 +63,7 @@ const ChatArea = ({ isMobile, user, updateUser, handleBack }) => {
     }
 
     return (
-        <div className={`basis-full overflow-hidden relative ${selectStyles.noSelect}`}>
+        <section className={`basis-full overflow-hidden relative ${selectStyles.noSelect}`}>
             <div className="border-b-2 border-gray-200 flex justify-between items-center">
                 <span className="py-4 px-4 font-semibold flex items-center flex-nowrap overflow-hidden">
                     {isMobile 
@@ -74,24 +80,28 @@ const ChatArea = ({ isMobile, user, updateUser, handleBack }) => {
                     </div>
                 </span>
                 <div className="flex items-center flex-none">
-                <img src="/info.svg"
-                    className={`w-14 py-4 px-4 cursor-pointer ${selectStyles.noSelect}`}
-                    onClick={handleOpenInfoModal}
-                    alt="View chat info" />
-                        <ChatInfoModal isOpen={isInfoModalOpen} onClose={handleCloseInfoModal} userData={user} />
-                        {isMobile
-                            ? ''
-                            : <>
-                                <img src="/trash.png"
-                                    className={`h-14 py-4 pl-4 pr-8 cursor-pointer ${selectStyles.noSelect}`}
-                                    onClick={handleOpenDeleteModal}
-                                    alt="Delete chat" />
-                                <DeleteModal
-                                    isOpen={isDeleteModalOpen}
-                                    onClose={handleCloseDeleteModal}
-                                    onSubmit={handleDelete} />
-                            </>
-                        }
+                    <img src="/info.svg"
+                        tabIndex={0}
+                        className={`w-14 py-4 px-4 cursor-pointer ${selectStyles.noSelect}`}
+                        onKeyDown={handleOpenInfoModal}
+                        onClick={handleOpenInfoModal}
+                        alt="View chat info" />
+                    <ChatInfoModal isOpen={isInfoModalOpen} onClose={handleCloseInfoModal} userData={user} />
+                    {isMobile
+                        ? ''
+                        : <>
+                            <img src="/trash.png"
+                                className={`h-14 py-4 pl-4 pr-8 cursor-pointer ${selectStyles.noSelect}`}
+                                tabIndex={0}
+                                onKeyDown={handleOpenDeleteModal}
+                                onClick={handleOpenDeleteModal}
+                                alt="Delete chat" />
+                            <DeleteModal
+                                isOpen={isDeleteModalOpen}
+                                onClose={handleCloseDeleteModal}
+                                onSubmit={handleDelete} />
+                        </>
+                    }
                 </div>
             </div>
             <ol reversed className={styles.chat}>
@@ -116,7 +126,7 @@ const ChatArea = ({ isMobile, user, updateUser, handleBack }) => {
                         Send
                 </button>
             </div>
-        </div>
+        </section>
     );
 };
 

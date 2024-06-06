@@ -12,7 +12,10 @@ const SideBar = ({ isMobile, currentUser, users, changeUser, updateUser }) => {
         changeCurr(currentUser);
     }, [currentUser]);
 
-    const handleOpenModal = () => {
+    const handleOpenModal = (e) => {
+        if (e?.key && (e?.key !== 'Enter' && e?.key !== ' ')) {
+            return;
+        }
         setModalOpen(true);
     }
 
@@ -48,17 +51,18 @@ const SideBar = ({ isMobile, currentUser, users, changeUser, updateUser }) => {
     });
 
     return (
-        <div className={`${styles.container} ${isMobile ? styles.mobileContainer : ""} `}>
+        <section className={`${styles.container} ${isMobile ? styles.mobileContainer : ""} `}>
             <div className={`flex justify-between items-center p-4 ${styles.user} ${styles.newChat}`}>
                 Users
-                <div 
-                    onClick={handleOpenModal}>
+                <div tabIndex={0}
+                     onKeyDown={handleOpenModal}
+                     onClick={handleOpenModal}>
                         <img src="/new-chat.svg" alt="Create new chat" />
                 </div>
             </div>
             <NewUserModal isMobile={isMobile} isOpen={isModalOpen} onClose={handleCloseModal} onSubmit={handleNewChat} />
             { usersMap }
-        </div>
+        </section>
     );
 };
 
